@@ -1,0 +1,118 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Admin Dashboard</title>
+
+<style>
+body {
+	font-family: Arial;
+	background: #f4f6f9;
+	padding: 40px;
+}
+
+.container {
+	width: 900px;
+	margin: auto;
+	background: white;
+	padding: 25px;
+	border-radius: 8px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+h2 {
+	text-align: center;
+}
+
+table {
+	width: 100%;
+	border-collapse: collapse;
+	margin-top: 20px;
+}
+
+th, td {
+	padding: 10px;
+	border: 1px solid #ccc;
+	text-align: center;
+}
+
+th {
+	background: #007bff;
+	color: white;
+}
+
+a {
+	text-decoration: none;
+	padding: 5px 10px;
+	border-radius: 5px;
+}
+
+.edit {
+	background: orange;
+	color: white;
+}
+
+.delete {
+	background: red;
+	color: white;
+}
+
+.add {
+	background: green;
+	color: white;
+	padding: 8px 15px;
+}
+
+.search {
+	background: #007bff;
+	color: white;
+	padding: 8px 15px;
+}
+</style>
+
+</head>
+
+<body>
+
+	<div class="container">
+
+		<h2>User Dashboard</h2>
+		
+		<a href="/user/search" class="search"> Search User </a>&nbsp; &nbsp;
+		<a href="/user/display" class="search"> Display All Users </a>
+
+		<table>
+
+			<tr>
+				<th>ID</th>
+				<th>Name</th>
+				<th>City</th>
+				<th>BloodGroup</th>
+				<th>Gender</th>
+				<th>Role</th>
+				<th>Action</th>
+			</tr>
+
+			<tr th:each="u: ${users}">
+
+
+				<td th:text="${u.id}"></td>
+				<td th:text="${u.name}"></td>
+				<td th:text="${u.city}"></td>
+				<td th:text="${u.bloodgroup}"></td>
+				<td th:text="${u.gender}"></td>
+				<td th:text="${u.role}"></td>
+
+				<td> <a
+					th:href="@{/user/edit(id=${u.id})}" class="edit"> Update </a> &nbsp; &nbsp; </a>
+				</td>
+
+			</tr>
+
+		</table>
+
+	</div>
+
+</body>
+</html>
+

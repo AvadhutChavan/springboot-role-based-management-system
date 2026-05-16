@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Edit User</title>
+
+<style>
+
+body{
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg,#667eea,#764ba2);
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.container{
+    background:white;
+    padding:30px 40px;
+    border-radius:10px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.2);
+    width:350px;
+}
+
+h2{
+    text-align:center;
+    margin-bottom:25px;
+}
+
+label{
+    font-weight:bold;
+}
+
+input,select{
+    width:100%;
+    padding:8px;
+    margin-top:5px;
+    margin-bottom:15px;
+    border-radius:5px;
+    border:1px solid #ccc;
+}
+
+input[readonly]{
+    background:#f1f1f1;
+}
+
+button{
+    width:100%;
+    padding:10px;
+    background:#667eea;
+    color:white;
+    border:none;
+    border-radius:5px;
+    font-size:16px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#5563d6;
+}
+
+.gender-select{
+    visibility:hidden;
+    height:0;
+}
+
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+<h2>Edit User</h2>
+
+<!-- dynamic role decide using controller -->
+<form th:action="@{'/' + ${role} + '/update'}" method="post">
+
+<input type="hidden" name="id" th:value="${user.id}">
+
+<label>Name</label>
+<input type="text" name="name" th:value="${user.name}" readonly>
+
+<label>City</label>
+<input type="text" name="city" th:value="${user.city}">
+
+<label>Blood Group</label>
+<input type="text" name="bloodgroup" th:value="${user.bloodgroup}">
+
+<div class="gender-select">
+<label>Gender</label>
+
+<select name="gender" >
+
+<option value="Male" th:selected="${user.gender=='Male'}">Male</option>
+<option value="Female" th:selected="${user.gender=='Female'}">Female</option>
+<option value="Other" th:selected="${user.gender=='Other'}">Other</option>
+
+</select>
+</div>
+
+<!-- Hidden fields -->
+<input type="hidden" name="role" th:value="${user.role}">
+<input type="hidden" name="username" th:value="${user.username}">
+<input type="hidden" name="password" th:value="${user.password}">
+
+<button type="submit">Update User</button>
+
+</form>
+
+</div>
+
+</body>
+</html>

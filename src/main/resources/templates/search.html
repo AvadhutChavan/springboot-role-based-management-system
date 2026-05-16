@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Search User</title>
+
+<style>
+
+body{
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg,#667eea,#764ba2);
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.container{
+    background:white;
+    padding:30px 40px;
+    border-radius:10px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.2);
+    width:320px;
+}
+
+h2{
+    text-align:center;
+    margin-bottom:25px;
+}
+
+label{
+    font-weight:bold;
+}
+
+input,select{
+    width:100%;
+    padding:8px;
+    margin-top:5px;
+    margin-bottom:15px;
+    border-radius:5px;
+    border:1px solid #ccc;
+}
+
+button{
+    width:100%;
+    padding:10px;
+    background:#667eea;
+    color:white;
+    border:none;
+    border-radius:5px;
+    font-size:16px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#5563d6;
+}
+
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+<h2>Search User</h2>
+
+<!-- dynamic role decide using controller -->
+<form th:action="@{'/' + ${role} + '/display'}" method="get">
+
+<label>City</label>
+<input type="text" name="city" placeholder="Enter city">
+
+<label>Blood Group</label>
+<input type="text" name="bloodgroup" placeholder="Ex: O+">
+
+<label>Gender</label>
+<select name="gender">
+<option value="">Select Gender</option>
+<option value="Male">Male</option>
+<option value="Female">Female</option>
+</select>
+
+<button type="submit">Search</button>
+
+</form>
+
+</div>
+
+</body>
+</html>
